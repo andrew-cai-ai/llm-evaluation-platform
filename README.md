@@ -1,54 +1,103 @@
+````md
 # LLM Evaluation & Reliability Platform
 
-A lightweight platform for evaluating LLM behavior, reliability, and performance across model providers.
+A lightweight platform for evaluating LLM behavior, reliability, and performance across multiple model providers.
 
 ## Problem
 
-LLM applications introduce system-level challenges that traditional backend services do not fully cover:
+LLM systems introduce challenges beyond traditional software systems:
 
-- non-deterministic outputs
-- model behavior changes across prompt versions
-- latency and token-cost tradeoffs
-- failures caused by timeouts, retries, and provider errors
-- lack of structured evaluation history
+- Non-deterministic outputs
+- Model behavior variation
+- Latency and token-cost tradeoffs
+- Provider failures and retries
+- Reliability and monitoring issues
 
-This project explores how production engineering ideas such as observability, retries, structured logging, and regression detection can be applied to LLM workflows.
+This project explores how production engineering concepts such as observability, fault tolerance, and evaluation infrastructure can be applied to LLM systems.
+
+---
 
 ## Current Features
 
-- FastAPI service with `/evaluate` endpoint
-- Request/response schema validation
-- Latency measurement
-- Structured JSON response
-- Local interactive API docs via Swagger UI
+✅ FastAPI evaluation service
 
-## Planned Features
+✅ Multi-provider architecture
 
-- OpenAI and Anthropic model adapters
-- Token usage and cost tracking
-- Retry and timeout handling
-- Prompt versioning
-- Consistency evaluation across repeated runs
-- PostgreSQL metrics storage
-- Basic dashboard for latency, failures, and consistency trends
+- OpenAI
+- Anthropic (skeleton)
+- Mock provider
+
+✅ Latency tracking
+
+✅ Token usage tracking
+
+✅ Retry handling
+
+✅ Timeout configuration
+
+✅ Structured error handling
+
+---
 
 ## Architecture
 
 ```text
 Client
-  |
-  v
+   |
+   v
 FastAPI API Layer
-  |
-  v
-Model Adapter Layer
-  |----------------|
-  | OpenAI         |
-  | Anthropic      |
-  |----------------|
-  |
-  v
+   |
+   v
+Provider Adapter Layer
+ ┌─────────────┐
+ │ OpenAI      │
+ │ Anthropic   │
+ │ Mock        │
+ └─────────────┘
+   |
+   v
 Metrics Collector
-  |
-  v
-PostgreSQL
+ ├─ Latency
+ └─ Token Usage
+````
+
+## Example API Response
+
+```json
+{
+  "status":"success",
+  "provider":"openai",
+  "model":"gpt-4o-mini",
+  "response":"...",
+  "latency_ms":1372,
+  "token_usage":{
+      "input_tokens":15,
+      "output_tokens":34,
+      "total_tokens":49
+  }
+}
+```
+
+## Planned Features
+
+* Consistency evaluation
+* Prompt versioning
+* Regression detection
+* Dashboard visualization
+* Persistent metrics storage
+
+## Tech Stack
+
+* Python
+* FastAPI
+* OpenAI API
+* Anthropic API
+* Tenacity
+* Docker
+* PostgreSQL (planned)
+
+## Why I Built This
+
+My background is in large-scale distributed systems and production infrastructure. This project explores how engineering patterns such as reliability, monitoring, and evaluation translate into AI systems and ML infrastructure.
+
+````
