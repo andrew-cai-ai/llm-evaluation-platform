@@ -32,3 +32,18 @@ Learned:
 - External provider failures should not break service startup
 - Separation of API layer and service layer
 - Provider abstraction improves future extensibility
+
+2026-05-23
+
+Added:
+
+- Real OpenAI provider integration
+- Retry and timeout handling
+- Token usage tracking
+- Latency tracking for real model calls
+
+Learned:
+
+- OpenAI quota/billing errors are external provider failures
+- Token usage is a core metric for cost-aware LLM systems
+- Latency and token usage should be captured together for evaluation infrastructure
