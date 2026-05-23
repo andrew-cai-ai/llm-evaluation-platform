@@ -59,7 +59,7 @@ Provider Adapter Layer
 Metrics Collector
  ├─ Latency
  └─ Token Usage
-````
+```
 
 ## Example API Response
 
@@ -80,24 +80,22 @@ Metrics Collector
 
 ## Planned Features
 
-* Consistency evaluation
-* Prompt versioning
-* Regression detection
-* Dashboard visualization
-* Persistent metrics storage
+- Consistency evaluation
+- Prompt versioning
+- Regression detection
+- Dashboard visualization
+- Persistent metrics storage
 
 ## Tech Stack
 
-* Python
-* FastAPI
-* OpenAI API
-* Anthropic API
-* Tenacity
-* Docker
-* PostgreSQL (planned)
+- Python
+- FastAPI
+- OpenAI API
+- Anthropic API
+- Tenacity
+- Docker
+- PostgreSQL (planned)
 
 ## Why I Built This
 
 My background is in large-scale distributed systems and production infrastructure. This project explores how engineering patterns such as reliability, monitoring, and evaluation translate into AI systems and ML infrastructure.
-
-````
