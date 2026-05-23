@@ -1,4 +1,3 @@
-````md
 # LLM Evaluation & Reliability Platform
 
 A lightweight platform for evaluating LLM behavior, reliability, and performance across multiple model providers.
@@ -65,15 +64,15 @@ Metrics Collector
 
 ```json
 {
-  "status":"success",
-  "provider":"openai",
-  "model":"gpt-4o-mini",
-  "response":"...",
-  "latency_ms":1372,
-  "token_usage":{
-      "input_tokens":15,
-      "output_tokens":34,
-      "total_tokens":49
+  "status": "success",
+  "provider": "openai",
+  "model": "gpt-4o-mini",
+  "response": "LLM evaluation measures the quality and reliability of model outputs.",
+  "latency_ms": 1372,
+  "token_usage": {
+    "input_tokens": 15,
+    "output_tokens": 34,
+    "total_tokens": 49
   }
 }
 ```
