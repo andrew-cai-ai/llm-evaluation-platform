@@ -27,24 +27,43 @@ def health():
 def evaluate(req: EvaluateRequest):
     start = time.time()
 
-    if req.provider == "openai":
-        response = call_openai(
-            prompt=req.prompt,
-            model=req.model or "gpt-4o-mini"
-        )
-    elif req.provider == "anthropic":
-        response = call_anthropic(
-            prompt=req.prompt,
-            model=req.model or "claude-3-5-haiku-latest"
-        )
-    else:
-        return {"error": "Unsupported provider"}
+    try:
+        if req.provider == "openai":
+            response = call_openai(
+                prompt=req.prompt,
+                model=req.model or "gpt-4o-mini"
+            )
+        elif req.provider == "anthropic":
+            response = call_anthropic(
+                prompt=req.prompt,
+                model=req.model or "claude-3-5-haiku-latest"
+            )
+        elif req.provider == "mock":
+            response = f"[mock response] {req.prompt}"
+        else:
+            return {
+                "status": "failed",
+                "error": "Unsupported provider",
+                "provider": req.provider
+            }
 
-    latency_ms = round((time.time() - start) * 1000, 2)
+        latency_ms = round((time.time() - start) * 1000, 2)
 
-    return {
-        "provider": req.provider,
-        "model": req.model,
-        "response": response,
-        "latency_ms": latency_ms
-    }
+        return {
+            "status": "success",
+            "provider": req.provider,
+            "model": req.model,
+            "response": response,
+            "latency_ms": latency_ms
+        }
+
+    except Exception as e:
+        latency_ms = round((time.time() - start) * 1000, 2)
+
+        return {
+            "status": "failed",
+            "provider": req.provider,
+            "model": req.model,
+            "error": str(e),
+            "latency_ms": latency_ms
+        }
