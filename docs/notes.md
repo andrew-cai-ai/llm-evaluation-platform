@@ -47,3 +47,21 @@ Learned:
 - OpenAI quota/billing errors are external provider failures
 - Token usage is a core metric for cost-aware LLM systems
 - Latency and token usage should be captured together for evaluation infrastructure
+
+
+2026-05-25
+
+Added:
+
+- Consistency evaluation endpoint
+- Multi-run evaluation for the same prompt
+- Aggregated token usage across runs
+- Per-run latency tracking
+
+Learned:
+
+- Same prompt can produce different outputs
+- Latency varies across repeated LLM calls
+- Token usage can change even when the prompt is the same
+- Consistency evaluation is a core part of LLM reliability
+- 
